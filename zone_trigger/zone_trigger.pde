@@ -12,10 +12,11 @@
 // uncomment to add more zones.
 
 String zones[][] = {
- {"320", "240", "800", "100", "http://www.hackaday.com"}
-//,{"1", "1", "1", "1", "http://website"}
-} ;
-
+ {"221", "247", "3300", "100", "https://github.com/jwcrawley/trigger_zone"}
+,{"450", "120", "5800", "300", "http://www.google.com/earth/explore/showcase/liquidgalaxy.html"}
+,{"330", "210", "4100", "150", "https://www.oculus.com/dk2/"} 
+,{"330", "210", "4100", "150", "https://www.oculus.com/dk2/"}
+};
 // This is the minimum amount of time for a link to be sent to the browser. The default is 1 second, or 1000 milliseconds. 
 int link_delay = 1000 ;
 
@@ -74,14 +75,18 @@ void draw()
      int z = Integer.parseInt(zones[i][2]) ;
      int depth = Integer.parseInt(zones[i][3]) ;
        if(last_zone_triggered != i){
-         if( ((z-depth)  <= dmap[width*y+x]) && (dmap[width*y+x] <= z)){
-           fill(255,0,0);
-           ellipse(Float.parseFloat(zones[i][0]), Float.parseFloat(zones[i][1]), 16, 16) ;
-           link(zones[i][4]);
-           time = millis() ;
-           last_zone_triggered = i ;
-           print(" iteration ");
-           println(i);
+         if((dmap[width*y+x]) != 0){
+           if( ((z-depth)  <= dmap[width*y+x]) && (dmap[width*y+x] <= z)){
+             fill(255,0,0);
+             ellipse(Float.parseFloat(zones[i][0]), Float.parseFloat(zones[i][1]), 16, 16) ;
+             link(zones[i][4]);
+             time = millis() ;
+             last_zone_triggered = i ;
+             print(" iteration ");
+             print(i);
+             println("  ", dmap[width*y+x] );
+             
+           }
          }
         }
     }
