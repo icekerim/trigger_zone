@@ -18,6 +18,9 @@ String zones[][] = {
 
 // This is the minimum amount of time for a link to be sent to the browser. The default is 1 second, or 1000 milliseconds. 
 int link_delay = 1000 ;
+
+
+int last_zone_triggered = -1 ; 
   
   
 // Library calls for Kinect  
@@ -70,15 +73,18 @@ void draw()
      int y = Integer.parseInt(zones[i][1]) ;
      int z = Integer.parseInt(zones[i][2]) ;
      int depth = Integer.parseInt(zones[i][3]) ;
-       if( ((z-depth)  <= dmap[width*y+x]) && (dmap[width*y+x] <= z)){
-         fill(255,0,0);
-         ellipse(Float.parseFloat(zones[i][0]), Float.parseFloat(zones[i][1]), 16, 16) ;
-         link(zones[i][4]);
-         time = millis() ;
-         print(" iteration ");
-         println(i);
-       }
-      }
+       if(last_zone_triggered != i){
+         if( ((z-depth)  <= dmap[width*y+x]) && (dmap[width*y+x] <= z)){
+           fill(255,0,0);
+           ellipse(Float.parseFloat(zones[i][0]), Float.parseFloat(zones[i][1]), 16, 16) ;
+           link(zones[i][4]);
+           time = millis() ;
+           last_zone_triggered = i ;
+           print(" iteration ");
+           println(i);
+         }
+        }
+    }
   }
 
 }
