@@ -16,9 +16,17 @@
 //  X       Y      Z     depth  radius       website
 
 String zones[][] = {
+<<<<<<< HEAD
   {"334", "181", "910", "50", "10", "https://github.com/jwcrawley/trigger_zone", "bell.mp3"}
 };
 
+=======
+ {"221", "247", "3300", "100", "https://github.com/jwcrawley/trigger_zone"}
+,{"450", "120", "5800", "300", "http://www.google.com/earth/explore/showcase/liquidgalaxy.html"}
+,{"330", "210", "4100", "150", "https://www.oculus.com/dk2/"} 
+,{"330", "210", "4100", "150", "https://www.oculus.com/dk2/"}
+};
+>>>>>>> origin/master
 // This is the minimum amount of time for a link to be sent to the browser. The default is 1 second, or 1000 milliseconds. 
 int link_delay = 1000 ;
 
@@ -86,6 +94,7 @@ void draw()
   }
 
   // When the amount of time exceeds the link_delay time, it runs the depth detection code.
+<<<<<<< HEAD
   if ((millis() - time) >= link_delay) {
     for (int i = 0; i < zones.length; i++) {
       int centerX = Integer.parseInt (zones[i][0]) ;
@@ -124,6 +133,28 @@ void draw()
               }
             }
           }
+=======
+  if((millis() - time) >= link_delay){
+    for(int i = 0 ; i < zones.length ; i++) {
+     int x = Integer.parseInt(zones[i][0]) ;
+     int y = Integer.parseInt(zones[i][1]) ;
+     int z = Integer.parseInt(zones[i][2]) ;
+     int depth = Integer.parseInt(zones[i][3]) ;
+       if(last_zone_triggered != i){
+         if((dmap[width*y+x]) != 0){
+           if( ((z-depth)  <= dmap[width*y+x]) && (dmap[width*y+x] <= z)){
+             fill(255,0,0);
+             ellipse(Float.parseFloat(zones[i][0]), Float.parseFloat(zones[i][1]), 16, 16) ;
+             link(zones[i][4]);
+             time = millis() ;
+             last_zone_triggered = i ;
+             print(" iteration ");
+             print(i);
+             println("  ", dmap[width*y+x] );
+             
+           }
+         }
+>>>>>>> origin/master
         }
       }
     }
