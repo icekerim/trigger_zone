@@ -16,7 +16,11 @@
 //  X       Y      Z     depth  radius       website
 
 String zones[][] = {
-  {"334", "181", "910", "50", "10", "https://github.com/jwcrawley/trigger_zone", "bell.mp3"}
+  {"285", "365", "2800", "129", "10", "https://github.com/jwcrawley/trigger_zone"}
+ ,{"450", "110", "5800", "100", "50", "http://www.google.com/earth/explore/showcase/liquidgalaxy.html"}
+ ,{"111", "360", "2400", "100", "15", "https://www.oculus.com/order/dk1/"}
+ ,{"340", "200", "4050", "75", "20", "https://www.oculus.com/dk2/"}
+ ,{"50", "200", "3700", "100", "50", "https://iutechshowcase.wordpress.com/" }
 };
 
 // This is the minimum amount of time for a link to be sent to the browser. The default is 1 second, or 1000 milliseconds. 
@@ -83,6 +87,8 @@ void draw()
   for (int i = 0; i < zones.length; i++) {
     fill(0x550000ff);  // Alpha blended blue circles so you can see through them.
     ellipse(Float.parseFloat(zones[i][0]), Float.parseFloat(zones[i][1]), Integer.parseInt(zones[i][4]), Integer.parseInt(zones[i][4]) ) ;
+    fill(255,50,0);
+    text(i, Integer.parseInt(zones[i][0])+10, Integer.parseInt(zones[i][1])-10);
   }
 
   // When the amount of time exceeds the link_delay time, it runs the depth detection code.
@@ -129,4 +135,3 @@ void draw()
     }
   }
 }
-
